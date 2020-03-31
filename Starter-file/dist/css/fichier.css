@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body .head {
+  width: 100%;
+  height: 300px; }
+  body .head .menu {
+    width: 100%;
+    height: 90px;
+    background-color: #D0E5F0; }
+    body .head .menu .logo {
+      float: left;
+      margin-left: 5%; }
+    body .head .menu ul {
+      float: right;
+      margin-right: 5%; }
+      body .head .menu ul li {
+        margin-top: 10%;
+        display: inline-block;
+        padding: 5px 20px; }
