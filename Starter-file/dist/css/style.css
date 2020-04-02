@@ -9,6 +9,7 @@ body .head {
     display: block;
     width: 100%;
     height: 100px;
+    background-color: #D0E5F0;
     background-image: url("../../Design/Assets/png/Merged bar-39.png"); }
     body .head .menu .logo {
       float: left;
