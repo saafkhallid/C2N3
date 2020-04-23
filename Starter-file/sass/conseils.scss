@@ -4,6 +4,7 @@
         
 }
 body {
+    height: 100%;
     .head {
         width: 100%;
         height: 350px;
@@ -11,12 +12,12 @@ body {
 
             display: block;
             width: 100%;
-            height: 100px;
+            height: 80px;
             background-color:#D0E5F0;
             background-image: url("../../Design/Assets/png/Merged\ bar-39.png");
             // background-color: rgba(26, 81, 158, 0.24);
 
-            // position: fixed;
+            position: fixed;
             // //  left: 0;
             // //  right: 0;
             //  z-index: 1;
@@ -53,7 +54,14 @@ body {
                       margin-top: 10%;
                       display: inline-block;
                       padding: 5px 20px;
-                      font-weight: bold;
+                      a {
+                          text-decoration: none;
+                          font-weight:700;
+                         
+                      }
+                      .info-active {
+                        color:#1A519E ;
+                    }
                      
 
                   }
@@ -68,7 +76,7 @@ body {
             background-color:#F4CF1B ;
             height: 200px;
             text-align: center;
-            padding-top: 35px;
+            padding-top: 100px;
             // margin-bottom: -100px;
             // padding-bottom: 40px;
             // position: fixed;
@@ -352,8 +360,7 @@ body {
                 grid-row: 2/3;
                 padding-right: 50%;
 
-                // padding-left: 150px;
-                // width: 20%;
+                
 
 
             }
@@ -361,7 +368,6 @@ body {
     }
     .integre3 {
         height: 300px;
-        // background-color: paleturquoise;
 
         h1 {
             text-align: center;
@@ -370,7 +376,6 @@ body {
             color:#1A519E ;
           
         }
-        // height: 200px;
       .container {
           padding-top: 40px;
         display: grid;
@@ -542,7 +547,7 @@ body {
             font-size: 40px;
         }
         button {
-            height:30px ;
+            height:35px ;
             width: 400px;
             font-weight: bold;
             font-size: 20px;
@@ -589,6 +594,7 @@ body {
                     
                         li {
                             list-style-type: none;
+                            padding-top: 20px;
                             text-align: center;
                             padding-top: 15px;
                             font-size: 20px;
