@@ -63,7 +63,7 @@ body {
             margin: 0 auto 10px auto;
             border-radius: 50%;
             left: -50%;
-            background-color: white; }
+            background-color: #1A519E; }
           body .section_teste .container .progresse li:after {
             content: ' ';
             position: absolute;

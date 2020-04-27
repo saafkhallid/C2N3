@@ -138,60 +138,108 @@ body {
             }
            
         }
-        .info {
+        .containere {
+
+            // width: 800px;
+            // max-width: 80%;
+            // background-color: rgb(42, 137, 214);
+            // border-radius: 5px;
+            // padding: 10px;
             width: 90%;
             height: 300px;
+            // margin-left: 10%;
             margin: 0 auto;
             padding-top: 20px;
             margin-top: 120px;
             border-radius: 10px;
-            background-color: #96C5DC;
+            background-color: rgba(150, 197, 220, 0.466);
+            .btn-grid {
+                width: 100%;
+                // align-content: center;
+                display: grid;
+                // grid-template-columns: repeat(2,auto);
+                grid-template-columns: 1fr 1fr;
+                gap:10px;
+                margin: 10px 0;
+                justify-content: center;
+                align-items: center;
+            }
+            .btn {
+                outline: none;
+            }
+
+            // .titre {
+            //     text-align: center;
+            //     font-size: 25px;
+            //     text-transform: uppercase;
+            // }
+            // .question{
+            //     padding: 20px;
+            //     font-size: 20px;
+            //     margin: 10px 0 10px 0;
+            //     background-color:rgba(150, 197, 220, 0.466);
+            //     color: rosybrown;
+
+            // }
+            // .option {
+            //     width: 35%;
+            //     // text-align: center;
+            //     display:block;
+            //     align-items: center;
+            //     padding: 10px 0 10px 15px;
+            //     // vertical-align: middle;
+            //     background-color: rgba(26, 177, 214, 0.479);
+            //     margin: 10px 0 10px 10px;
+            //     color: #FFFFFF;
+            //     border-radius: 20px;
+
+            // }
+            // .next-btn {
+            //     text-align: center;
+            //     padding: 5px 10px;
+
+            // }
 
 
-            h1 {
-                text-align: center;
-            }
-            .item1 {
-                text-align: center;
-                font-size: 18px;
-                padding-top: 15px;
-                font-family: 'Lato', sans-serif;
-                line-height: 25px;
-                display: block;
-            }
-            hr {
-                width: 33.33%;
-                margin: 0 auto;
-                background-color: yellow;
-                height: 0.5px;
-                border-radius: 2px;
-                }
+           
             
         }
-        .button {
-            text-align: center;
+        // .next-btn {
+        //     display: flex;
+        //     justify-content: center;
+        //     align-items: center;
+        //     margin-top: 15px;
+        //     button {
+        //         padding: 10px 20px;
+        //         border-radius: 2px;
+        //         border: none;
+        //     }
+            
+        // }
+        // .button {
+        //     text-align: center;
 
 
-            .btn {
-                width: 350px;
-                height: 45px;
-                background-color: #1078AD;
-                border: none;
-                border-radius: 3px;
-                font-size: 20px;
-                font-family:'Lato', sans-serif; 
-                margin-top: 25px;
-                color: white;
+        //     .btn {
+        //         width: 350px;
+        //         height: 45px;
+        //         background-color: #1078AD;
+        //         border: none;
+        //         border-radius: 3px;
+        //         font-size: 20px;
+        //         font-family:'Lato', sans-serif; 
+        //         margin-top: 25px;
+        //         color: white;
                
-            }
-            .btn:hover {
-                background-color: rgba(0, 119, 255, 0.479);
-                transition: 2s ;
-                cursor: pointer;
-                border: 2px solid rgb(57, 165, 228);
-                border-radius: 3px;
+        //     }
+        //     .btn:hover {
+        //         background-color: rgba(0, 119, 255, 0.479);
+        //         transition: 2s ;
+        //         cursor: pointer;
+        //         border: 2px solid rgb(57, 165, 228);
+        //         border-radius: 3px;
 
-            }
+        //     }
             
         }
     }
@@ -362,4 +410,3 @@ body {
     }
 
 
-}

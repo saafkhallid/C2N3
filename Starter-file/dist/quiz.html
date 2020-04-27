@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/teste.css">
+    <link rel="stylesheet" href="./css/quiz.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
     <script src="../dist/js/script.js"></script>
     <title>Teste</title>
@@ -43,16 +43,45 @@
                     </li>
                 </ul>
             </div>
-            <div class="info">
-                <h1>Préambule</h1>
-                <p class="item1">« L’application est fournie à titre gratuit, en l’état, uniquement à des fins d’information pour contribuer à fluidifier la prise en charge des personnes par les services d’urgences pendant l’épidémie de Coronavirus COVID-19. L’exhaustivité, l’exactitude, le caractère à jour des informations et contenus mis à disposition dans cette application, ou leur adéquation à des finalités particulières, ne sont pas garantis.</p> <br>
-                <hr>
-                <p class="item1">  L’utilisation de l’application et de son contenu ne remplace en aucun cas le conseil nécessaire donné par votre médecin ou votre pharmacien ou tout autre professionnel de santé compétent dans chaque cas particulier. Tout examen ou décision de l’utilisateur doit être réalisé ou prise de manière autonome sur la base de l’information scientifique et clinique pertinente, de la notice officielle du produit concerné le cas échéant et en cas de doute, en consultant un médecin compétent. </p>
+            <div  class="containere">
+                <div class="question-container" class="hide">
+                    <div id="question">Question </div>
+                    <div id="answer-buttons" class="btn-grid">
+                        <button class="btn">Answer 1</button>
+                        <button class="btn">Answer 2</button>
+                        <button class="btn">Answer 3</button>
+                        <button class="btn">Answer 4</button>
+
+
+
+
+                    </div>
+
+                </div>
+                <div class="controls">
+                    <button id="start-btn" class="start-btn btn">Start</button>
+                    <button id="next-btn" class="next-btn btn  hide">Next</button>
+
+
+                </div>
+
+
+                <!-- <div class="titre">Démarrer le teste</div>
+                 <div id="question" class="question"></div>
+
+ 
+                <label class="option"><input type="radio" name="option" value="1"><span id="opt1"></span></label>
+                <label class="option"><input type="radio" name="option" value="2"><span id="opt2"></span></label>
+                <label class="option"><input type="radio" name="option" value="3"><span id="opt3"></span></label>
+                <label class="option"><input type="radio" name="option" value="4"><span id="opt4"></span></label>
+                <div class="next-btn"><button    onclick="loadQuestion();"  id="nextButton" class="next-btn">Next Question</button>   </div>           -->
+
 
             </div>
-            <div class="button">
-                <button  onclick="saaf()" class="btn">Demarer le test</button>
-            </div>
+            <!-- <div class="next-btn"><button    onclick="loadQuestion()"  id="nextButton" class="next-btn">Next Question</button>   </div>           -->
+
+            <!-- <div id="result" class="containere result" style="display: none;"></div> -->
+           
 
         </div>
     </section>
