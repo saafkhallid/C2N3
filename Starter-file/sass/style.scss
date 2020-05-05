@@ -129,7 +129,10 @@ body {
                 border-radius: 3px;
                 font-weight: 700;
                 font-size: 30px;
-                // height: 60px;
+                a {
+                    text-decoration: none;
+                    color: blanchedalmond;
+                }
             }
 
         }
@@ -337,6 +340,10 @@ body {
             color:#FFFFFF ;
             border: none;
             border-radius: 3px;
+                a {
+                    text-decoration: none;
+                    color: blanchedalmond;
+                }
        
         }
       

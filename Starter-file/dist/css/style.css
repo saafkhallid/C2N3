@@ -84,6 +84,9 @@ body {
         border-radius: 3px;
         font-weight: 700;
         font-size: 30px; }
+        body .section1 .container button a {
+          text-decoration: none;
+          color: blanchedalmond; }
     body .section1 .photo {
       width: 50%;
       margin-left: 20px; }
@@ -200,6 +203,9 @@ body {
       color: #FFFFFF;
       border: none;
       border-radius: 3px; }
+      body .section4 button a {
+        text-decoration: none;
+        color: blanchedalmond; }
   body .section5 .photo {
     display: block;
     margin-left: auto;

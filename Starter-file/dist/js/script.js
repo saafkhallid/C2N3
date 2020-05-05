@@ -1,292 +1,575 @@
-// var currentquestion=0;
-// var score=0;
-// var totalQuestion=questions.length;
-// var container=document.getElementById("quizcontainer");
-// var   questionEl= document.getElementById("question");
+//--------------------selectors-----------------:
 
-// var opt1=document.getElementById("opt1")
-// var opt2=document.getElementById("opt2")
-// var opt3=document.getElementById("opt3")
-// var opt4=document.getElementById("opt4")
-// var nexButton=document.getElementById("nextButton");
-// var resultcont=document.getElementById("result");
+var testButton = document.getElementById('start-btn')
+var sectionQuestion = document.getElementById('container')
+var informationSection = document.getElementById('information')
+var scroll = document.querySelectorAll('.steppe h1')
+var nextButton = document.getElementById('next-btn')
+var question = document.getElementById('nextQuestion')
+var selectInputs = document.querySelector('.answer')
+var buttPrevious = document.getElementById('pré-btn')
+var progressBar = document.getElementsByClassName('progress')
+var serialPlus = document.querySelector('.question-number')
+var bar = document.querySelector('.bar')
 
 
-// function loadQuestion(questionIndex) {
-//     var q=questions[questionIndex];
-//     questionEl.textContent=(questionIndex+1)+'.'+q.question
-//     opt1.textContent=q+option1;
-//     opt2.textContent=q+option2;
-//     opt3.textContent=q+option3;
-//     opt4.textContent=q+option4;
+let QuestionIndex=0;
+
+
+
+//---------------------evenemment-------------------:
+testButton.addEventListener('click' , Test)
+nextButton.addEventListener('click',nextQuetion)
+selectInputs.addEventListener('change',typeOfButton)
+
+
+
+
+
+
+//-----------------------début de test--------------:
+function Test(){
+
+    testButton.classList.add('hide')
+    sectionQuestion.classList.remove('hide')
+    informationSection.classList.add('hide')
+    scroll[0].classList.remove('actuel')
+    scroll[1].classList.add('actuel')
+
+
+
+                               
+   nextButton.disabled=true;
+
+ 
+   control()
+}
+
+//--------------------------- Question suivant -----------------------:
+
+
+
+
+ function nextQuetion(){
+
+    QuestionIndex++
+    showQuestion( questions[ QuestionIndex])
+    progressButtons( QuestionIndex)
+
+    nextButton.disabled=true;
+
+    control()
+
+    finTest(QuestionIndex)
+
+
+
+
+ }
+
+
+
+
+
+//-----------------------------   afficher les question----------------------
+
+function showQuestion(questions){
+
+    question.innerText=questions.question
+    selectInputs.innerHTML = ''
+
+
+    if(questions.input.type==='radio'){
+
+      questions.input.answer.forEach(answer =>{
+
+        selectInputs.innerHTML += 
+         `<div>
+        <input type="radio"  name="choix" id="${answer.text}">
+        <label for="${answer.text}">
+            <i class="fa ${ answer.icon}"></i>
+            <span>${answer.text}</span> </label>
+        </div>
+        `
+
+      })
     
-// };
-// function loadNexQuestion() {
-//  var selectoption=document.querySelector('input[type=radio]:checked');
-//     if (!selectoption ) {
-//         alert("Please select you answer!");
-//         return      
-//     }
-//   var answer=selectoption.value;
-//   if (questions[currentquestion].answer==answer) {
-//       score+=10;
-      
-//   }
-//   selectoption.checked=false;
-//   currentquestion++;
-//   if(currentquestion==totalQuestion) {
-//       container.style.display="none";
-//       resultcont.style.display="";
-//       resultcont.textContent="you Score: "+score;
-//       return;
-//   }
-//   loadQuestion(currentquestion);
+    }else{
 
-//   }
+        selectInputs.innerHTML=` <input type="number"  id="${questions.input.name}"
+         min="${questions.input.min}" max="${questions.input.max}" placeholder=" ${questions.input.min}- ${questions.input.max}">
+        <span class="input-span">${questions.input.name}</span>`
+        
+    }
 
-//   loadQuestion(currentquestion);
+
+}
 
 
 
+//------------------------- question précedant ----------------------------:
+
+buttPrevious.addEventListener('click',()=>{
+
+    QuestionIndex--
+     
+    showQuestion( questions[ QuestionIndex])
+
+    progressButtons( QuestionIndex)
+
+    nextButton.disabled=true 
+
+    control()
+})
 
 
+//---------------------controle progress bar----------------------:
+
+function progressButtons(number){
+
+
+    const addNumber = number + 1 ;
+    serialPlus.innerHTML= addNumber ;
+
+    bar.style.width =`calc(${addNumber}*calc(100%/22))` 
+
+   
+}
+
+
+
+//----------------------------inclickuble & clickable button--------------:
+function typeOfButton(event){
+
+    const input=event.target
+ 
     
+if (input.type === 'number') {
+
+
+        const number = parseFloat(input.value)
+                    
+        if (number >= input.min && number <= input.max) {
+
+            nextButton.disabled = false
+        } 
+        else {
+            nextButton.disabled =true
+
+        }
+
+} 
+else {
+
+        nextButton.disabled = false
+    }
+
+   
+}
+
+//--------controle Button précédent-----:
+
+
+function control(){
+
+    if (QuestionIndex===0){
+
+        buttPrevious.classList.add('visibility')
+
+    }else{
+
+        buttPrevious.classList.remove('visibility')
+
+    }
+
+}
+
+
+//------------ajouter Button terminé
+
+
+function finTest(){
+
+    if(QuestionIndex===21){
+
+        nextButton.innerText = 'Terminer le test'
+        sectionQuestion.innerHTML.style.fontSize="xx-large"
+        window.location.reload();
+
+
+        
+
+}else{
+
+    nextButton.innerText = 'Suivant';
+}
+
+}
+
+
+
+//----------------------resultat
 
 
 
 
 
-var questions=[{
-    "question":"Ces dernières 48 heures, quelle a été votre température la plus élevée ?",
-    "option1":"degrer",
-    "answer":"1"
+
+
+
+
+
+
+
+
+
+
+
+
+//------------------------------les questions --------------------------:
+
+const questions = [{
+    question: 'Pensez-vous avoir ou avoir eu de la fièvre ces 10 derniers jours (frissons, sueurs) ?',
+
+    input: {
+        type: 'radio',
+        Numéro:"q1",
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
 }, {
-    "question":"Ces derniers jours, avez-vous une toux ou une augmentation de votre toux habituelle ?",
-    "option1":"oui",
-    "option2":"Non",
-    "answer":"2"
+    question: 'Quelle est votre température corporelle ?',
+
+    input: {
+        type: 'number',
+        Numéro:"q2",
+
+        name: 'degrés',
+        min: 34,
+        max: 42
+    }
 }, {
-    "question":"Ces derniers jours, avez-vous noté une forte diminution ou perte de votre goût ou de votre odorat ?",
-    "option1":"oui",
-    "option2":"Non",
-    "answer":"3"
-},{
-    "question":"Ces derniers jours, avez-vous eu un mal de gorge et/ou des douleurs musculaires et/ou des courbatures inhabituelles ?",
-    "option1":"oui",
-    "option2":"Non",
-    "answer":"1",
+    question: 'Ces derniers jours, avez-vous une toux ou une augmentation de votre toux habituelle ?',
 
-},{
-    "question":"Ces dernières 24 heures, avez-vous de la diarrhée ?Avec au moins 3 selles molles",
-    "option1":" oui",
-    "option2":"Non",
-    "answer" :"3",
-},{
-    "question":"Ces derniers jours, avez-vous une fatigue inhabituelle ?",
-    "option1":"Oui",
-    "option2":"Non",
-    "answer":"2"
+    input: {
+        type: 'radio',
+        Numéro:"q3",
+
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
 }, {
-    "question":"Depuis 24 heures ou plus, êtes-vous dans l'impossibilité de vous alimenter ou de boire ?",
-    "option1":"Oui",
-    "option2":"Non",
-    "answer":"1",
-},{
-    "question":"Ces dernières 24 heures, avez-vous noté un manque de souffle inhabituel lorsque vous parlez ou faites un petit effort ?",
-    "option1":"Oui",
-    "option2":"Non",
-    "answer":"3",
-},{
-    "question":"Quel est votre âge ? Ceci, afin de calculer un facteur de risque spécifique",
-    "option1":"ans",
-    "answer":"2",
-},{
-    "question":"Quel est votre taille ? Afin de calculer l’indice de masse corporelle qui est un facteur influençant le risque de complications de l’infection.",
-    "option1":"cm",
-    "answer":"1",
-},{
-    "question":"Quel est votre poids ?   Afin de calculer l’indice de masse corporelle qui est un facteur influençant le risque de complications de l’infection",
-    "option1":"Kg",
-    "answer":"1"
+    question:'Avez-vous eu des courbatures inhabituelles au cours des derniers jours ?',
+
+    input: {
+        type: 'radio',
+        Numéro:"q4",
+
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
 }, {
-    "question":"Avez-vous de l’hypertension artérielle mal équilibrée ? Ou avez-vous une maladie cardiaque ou vasculaire ?  Ou prenez vous un traitement à visée cardiologique ?",
-    "option1":"oui",
-    "option2":"Non",
-    "option3":"Ne sais pas",
-    "answer":"2",
+    question: 'Ces derniers jours, avez-vous un mal de gorge ?',
+
+    input: {
+        type: 'radio',
+        Numéro:"q5",
+
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
 }, {
-    "question":"Êtes-vous diabétique ?",
-    "option1":"oui",
-    "option2":"Non",
-    "answer":"2",
-},{
-    "question":"Avez-vous ou avez-vous eu un cancer ces trois dernières années ?",
-    "option1":"Oui",
-    "option2":"Non",
-    "answer":"3",
+    question: 'Ces dernières 24 heures, avez-vous de la diarrhée ? Avec au moins 3 selles molles.',
+
+    input: {
+        type: 'radio',
+        Numéro:"q6",
+
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
 }, {
-    "question":"Avez-vous une maladie respiratoire ? Ou êtes-vous suivi par un pneumologue ?",
-    "option1":"Oui",
-    "option2":"Non",
-    "answer":"1",
+    question: 'Ces derniers jours, avez-vous une fatigue inhabituelle qui vous a obligé à vous reposer plus de la moitié de la journée ?',
+
+    input: {
+        type: 'radio',
+        Numéro:"q7",
+
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
 }, {
-    "question":"Avez-vous une insuffisance rénale chronique dialysée ?",
-    "option1":"Oui",
-    "option2":"Non",
-    "answer":"1",
+    question: 'Avez-vous des difficultés importantes pour vous alimenter ou boire depuis plus de 24h ?',
 
-},{
-    "question":"Avez-vous une maladie chronique du foie ?",
-    "option1":"Oui",
-    "option2":"Non",
-    "answer":"3",
+    input: {
+        type: 'radio',
+        Numéro:"q8",
 
-},{
-    "question":  "Êtes-vous enceinte ?",
-    "option1":"Oui",
-    "option2":"Non",
-    "option3":"non applicable",
-    "answer":"2"
-},{
-    "question":"Avez-vous une maladie connue pour diminuer vos défenses immunitaires ?",
-    "option1":"Oui",
-    "option2":"Non",
-    "option3":"non applicable",
-    "answer":"2"
-    
-},{
-    "question":"Prenez-vous un traitement immunosuppresseur ? C’est un traitement qui diminue vos défenses contre les infections. Voici quelques exemples : corticoïdes, méthotrexate, ciclosporine, tacrolimus, azathioprine, cyclophosphamide (liste non exhaustive)",
-    "option1":"Oui",
-    "option2":"Non",
-    "option3":"non applicable",
-    "answer":"3"
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
+}, {
+    question: 'Dans les dernières 24 heures, avez-vous noté un manque de souffle inhabituel lorsque vous parlez ou faites un petit effort ?',
 
+    input: {
+        type: 'radio',
+        Numéro:"q9",
 
-},{
-    "question":"Quel est votre code postal ? Cette information nous permet de réaliser un suivi épidémiologiqueJe suis en dehors de Maroc ou je ne souhaite pas répondre.",
-    "option1":"votre code postale",
-    "answer":"1"
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
+}, {
+    question: 'Actuellement, comment vous vous sentez ?',
 
+    input: {
+        type: 'radio',
+        Numéro:"q10",
 
+        answer: [{
+            text: 'Bien',
+            icon: ' far fa-laugh'
+        }, {
+            text: 'Assez bien',
+            icon: ' far fa-smile'
+        }, {
+            text: 'Fatigué(e)',
+            icon: ' far fa-frown'
+        }, {
+            text: 'Très fatigué',
+            icon: 'far fa-dizzy'
+        }]
+    }
+}, {
+    question: 'Quel est votre âge ? Ceci, afin de calculer un facteur de risque spécifique.',
+
+    input: {
+        Numéro:"q11",
+
+        type: 'number',
+        name: 'ans',
+        min: 15,
+        max: 110
+    }
+}, 
+
+{
+    question: 'Quel est votre poids ? Afin de calculer l’indice de masse corporelle qui est un facteur influençant le risque de complications de l’infection.',
+
+    input: {
+        Numéro:"q12",
+
+        type: 'number',
+        name: 'kg',
+        min: 20,
+        max: 250
+    }
+}, 
+
+{
+    question: 'Quelle est votre taille ? Afin de calculer l’indice de masse corporelle qui est un facteur influençant le risque de complications de l’infection.',
+
+    input: {
+        Numéro:"q13",
+
+        type: 'number',
+        name: 'cm',
+        min: 80,
+        max: 250
+    }
+},
+
+{
+    question: 'Avez-vous de l’hypertension artérielle mal équilibrée ? Ou avez-vous une maladie cardiaque ou vasculaire ? Ou prenez-vous un traitement à visée cardiologique ?',
+
+    input: {
+        Numéro:"q14",
+        type: 'radio',
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
+},
+
+{
+    question: 'Êtes-vous diabétique ?',
+
+    input: {
+        Numéro:"q15",
+        type: 'radio',
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
+},
+
+{
+    question: 'Avez-vous ou avez-vous eu un cancer ?',
+
+    input: {
+        Numéro:"q16",
+
+        type: 'radio',
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
+}, 
+
+{
+    question: 'Avez-vous une maladie respiratoire ? Ou êtes-vous suivi par un pneumologue ?',
+
+    input: {
+        Numéro:"q17",
+
+        type: 'radio',
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
+},
+
+{
+    question: 'Avez-vous une insuffisance rénale chronique dialysée ?',
+
+    input: {
+        Numéro:"q18",
+
+        type: 'radio',
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
+}, 
+
+{
+    question: 'Avez-vous une maladie chronique du foie ?',
+
+    input: {
+        Numéro:"q19",
+
+        type: 'radio',
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
+}, 
+{
+    question: 'Êtes-vous enceinte ?',
+
+    input: {
+        Numéro:"q20",
+
+        type: 'radio',
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }, {
+            text: 'Homme',
+            icon: 'fa-male'
+
+        }]
+    }
+},
+ {
+    question: 'Avez-vous une maladie connue pour diminuer vos défenses immunitaires ?',
+
+    input: {
+        Numéro:"q21",
+
+        type: 'radio',
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
+}, 
+{
+    question: 'Prenez-vous un traitement immunosuppresseur ? C’est un traitement qui diminue vos défenses contre les infections. Voici quelques exemples : corticoïdes, méthotrexate, ciclosporine, tacrolimus, azathioprine, cyclophosphamide (liste non exhaustive).',
+
+    input: {
+        Numéro:"q22",
+
+        type: 'radio',
+        answer: [{
+            text: 'Oui',
+            icon: 'fa-check'
+        }, {
+            text: 'Non',
+            icon: 'fa-times'
+        }]
+    }
 }
 
 ]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var questions=[
-//     ["Ces dernières 48 heures, quelle a été votre température la plus élevée ?","degrer"],
-//     ["Ces derniers jours, avez-vous une toux ou une augmentation de votre toux habituelle ?","oui","Non"],
-//     ["Ces derniers jours, avez-vous noté une forte diminution ou perte de votre goût ou de votre odorat ?","oui","Non"],
-
-//     ["Ces derniers jours, avez-vous eu un mal de gorge et/ou des douleurs musculaires et/ou des courbatures inhabituelles ?","oui","Non"],
-//     ["Ces derniers jours, avez-vous eu un mal de gorge et/ou des douleurs musculaires et/ou des courbatures inhabituelles ?","oui","Non"],
-//     ["Ces derniers jours, avez-vous une fatigue inhabituelle ?","oui","Non"],
-
-//     ["Depuis 24 heures ou plus, êtes-vous dans l'impossibilité de vous alimenter ou de boire ?","oui","Non"],
-
-//     ["Ces dernières 24 heures, avez-vous noté un manque de souffle inhabituel lorsque vous parlez ou faites un petit effort ?","oui","Non"],
-//     ["Quel est votre âge ? Ceci, afin de calculer un facteur de risque spécifique","ans"],
-
-//     ["Quel est votre taille ? Afin de calculer l’indice de masse corporelle qui est un facteur influençant le risque de complications de l’infection.","cm"],
-//     ["Quel est votre poids ?   Afin de calculer l’indice de masse corporelle qui est un facteur influençant le risque de complications de l’infection","kg"],
-
-//     ["Avez-vous de l’hypertension artérielle mal équilibrée ? Ou avez-vous une maladie cardiaque ou vasculaire ?  Ou prenez vous un traitement à visée cardiologique ?","oui","Non","Ne sais pas"],
-
-//     ["Êtes-vous diabétique ?","oui","Non"],
-//     ["Avez-vous ou avez-vous eu un cancer ces trois dernières années ?","oui","Non"],
-
-//     ["Avez-vous une maladie respiratoire ? Ou êtes-vous suivi par un pneumologue ?","oui","Non"],
-
-//     ["Avez-vous une insuffisance rénale chronique dialysée ?","oui","Non"],
-
-//     ["Avez-vous une maladie chronique du foie ?","oui","Non"],
-//     ["Êtes-vous enceinte ?","oui","Non","non applicable"],
-
-//     ["Avez-vous une maladie connue pour diminuer vos défenses immunitaires ?","oui","Non","Ne sais pas"],
-
-//     ["Prenez-vous un traitement immunosuppresseur ? C’est un traitement qui diminue vos défenses contre les infections. Voici quelques exemples : corticoïdes, méthotrexate, ciclosporine, tacrolimus, azathioprine, cyclophosphamide (liste non exhaustive)","oui","Non","Ne sais pas"],
-
-//     ["Quel est votre code postal ? Cette information nous permet de réaliser un suivi épidémiologiqueJe suis en dehors de Maroc ou je ne souhaite pas répondre.","votre code postale"],
-
-    
-// ]
-
-
-
-// function $(arg) {
-//     return document.getElementById(arg);
-// }
-
-// function displayQuestion() {
-//     test = $("test");
-//     if (pos >= questions.length) {
-//         test.innerHTML = "<h2>You got " + score + " of " + questions.length + " questions correct!</h2>";
-//         $("test_status").innerHTML = "Test Completed.";
-//         pos = 0;
-//         score = 0;
-//         return false;
-//     }
-    
-//     $("test_status").innerHTML = "Question " + (pos + 1) + " of " + questions.length;
-//     question = questions[pos][0];
-//     opA = questions[pos][1];
-//     opB = questions[pos][2];
-//     opC = questions[pos][3];
-//     opD = questions[pos][4];
-//     test.innerHTML = "<h3>" + question + "</h3>";
-//     test.innerHTML += "<input type='radio' name='options' value='A'>" + opA + "<br>";
-//     test.innerHTML += "<input type='radio' name='options' value='B'>" + opB + "<br>";
-//     test.innerHTML += "<input type='radio' name='options' value='C'>" + opC + "<br>";
-//     test.innerHTML += "<input type='radio' name='options' value='D'>" + opD + "<br><br>";
-//     test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
-// }
-
-// function checkAnswer() {
-//     options = document.getElementsByName("options");
-//     for (var i = 0; i < options.length; i++) {
-//         if (options[i].checked) {
-//             option = options[i].value;
-//         }
-//     }
-//     if (option == questions[pos][5]) {
-//         score++;
-//     }
-//     pos++;
-//     displayQuestion();
-// }
