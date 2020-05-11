@@ -122,7 +122,7 @@ body {
       display: none; }
     body .answer input[type="radio"]:checked ~ label {
       background-color: #1078AD;
-      color: #F4CF1B; }
+      color: #1bf41b; }
     body .answer label {
       height: 80px;
       width: 120px;
@@ -176,7 +176,8 @@ body {
     justify-content: space-between;
     padding: 0 20px 0 20px;
     margin-top: 100px;
-    margin-bottom: 30px; }
+    margin-bottom: 30px;
+    cursor: pointer; }
     body .btn button {
       background-color: #D0E5F0;
       border-radius: 5px;
@@ -185,7 +186,8 @@ body {
       font-size: 15px;
       color: white;
       float: right;
-      outline: none; }
+      outline: none;
+      cursor: pointer; }
       body .btn button:hover {
         background-color: #c5c219;
         border: 2px solid #e0dd0e;

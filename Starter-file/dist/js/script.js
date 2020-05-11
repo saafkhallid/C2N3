@@ -3,7 +3,7 @@
 var testButton = document.getElementById('start-btn')
 var sectionQuestion = document.getElementById('container')
 var informationSection = document.getElementById('information')
-var scroll = document.querySelectorAll('.steppe h1')
+var saaf = document.querySelectorAll('.steppe h1')
 var nextButton = document.getElementById('next-btn')
 var question = document.getElementById('nextQuestion')
 var selectInputs = document.querySelector('.answer')
@@ -11,9 +11,13 @@ var buttPrevious = document.getElementById('pré-btn')
 var progressBar = document.getElementsByClassName('progress')
 var serialPlus = document.querySelector('.question-number')
 var bar = document.querySelector('.bar')
+var result=document.querySelector("#information h2")
+var resultMessage=document.querySelectorAll("#information p")
+var titre=document.querySelector("#titre")
 
 
 let QuestionIndex=0;
+let QuetionNom={};
 
 
 
@@ -29,12 +33,11 @@ selectInputs.addEventListener('change',typeOfButton)
 
 //-----------------------début de test--------------:
 function Test(){
-
     testButton.classList.add('hide')
     sectionQuestion.classList.remove('hide')
     informationSection.classList.add('hide')
-    scroll[0].classList.remove('actuel')
-    scroll[1].classList.add('actuel')
+    saaf[0].classList.remove('actuel')
+    saaf[1].classList.add('actuel')
 
 
 
@@ -48,11 +51,15 @@ function Test(){
 //--------------------------- Question suivant -----------------------:
 
 
-
+QuestionIndex=0
 
  function nextQuetion(){
+     if (QuestionIndex<21) {
+         
+     
 
     QuestionIndex++
+
     showQuestion( questions[ QuestionIndex])
     progressButtons( QuestionIndex)
 
@@ -61,11 +68,25 @@ function Test(){
     control()
 
     finTest(QuestionIndex)
+     }
+     if (QuestionIndex === 21){
+       
+        nextButton.innerHTML='terminer le test';
+        nextButton.classList.add('result');
+        const  doneTest = document.querySelector('.result');
+        doneTest.addEventListener('click',comptQuetion);
+       
+    
+    }else{
+
+        nextButton.innerHTML='suivant';
+    }
+}
 
 
 
 
- }
+ 
 
 
 
@@ -152,8 +173,10 @@ if (input.type === 'number') {
         if (number >= input.min && number <= input.max) {
 
             nextButton.disabled = false
+            knowQuetion[input.name]=input.value;
         } 
         else {
+           
             nextButton.disabled =true
 
         }
@@ -162,6 +185,9 @@ if (input.type === 'number') {
 else {
 
         nextButton.disabled = false
+        
+        knowQuetion[input.name] = input.id;
+        console.log(knowQuetion);
     }
 
    
@@ -174,11 +200,11 @@ function control(){
 
     if (QuestionIndex===0){
 
-        buttPrevious.classList.add('visibility')
+        buttPrevious.style.visibility='hidden'
 
     }else{
 
-        buttPrevious.classList.remove('visibility')
+        buttPrevious.style.visibility='visible'
 
     }
 
@@ -194,6 +220,7 @@ function finTest(){
 
         nextButton.innerText = 'Terminer le test'
         sectionQuestion.innerHTML.style.fontSize="xx-large"
+        sectionQuestion.innerHTML.style.width="300px"
         window.location.reload();
 
 
@@ -206,16 +233,114 @@ function finTest(){
 
 }
 
-
-
-//----------------------resultat
-
+//------Résultat-------------------//
 
 
 
+var counter = 0; 
+
+
+function comptQuetion(){
+
+    if(QuetionNom['q1']==='oui'){
+
+        counter++
+    }
+
+    if(parseFloat(QuetionNom['q2'] >39) || parseFloat(QuetionNom['q2'] <35)){
+
+        counter++
+    }
+
+
+    if(QuetionNom['q3']==='oui' ){
+
+        counter++
+
+    }
+
+    if(QuetionNom['q10']==='Fatigué(e)' || QuetionNom['q10']=== 'Très fatigué' ){
+
+        counter++
+    }
+
+    if(parseFloat(QuetionNom['q12'] >120) || parseFloat(QuetionNom['q12'] < 40)){
+
+        counter++
+    }
+
+    if(QuetionNom['q16']!=='Non'){
+
+        counter++
+    }
+ 
+    showResult()
+   
+}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function showResult(_counter){
+
+//     saaf[1].classList.remove('actuel');
+//     saaf[2].classList.add('actuel');
+//     sectionQuestion.classList.add('hide');
+//     informationSection.classList.remove('hide');
+//     testButton.classList.remove('hide');
+//     testButton.innerText='Recommoncer le test';
+//     title.innerHTML='resultat';
+//     testButton.addEventListener('click',()=>{
+
+//         window.location.reload();
+//     })
+
+//     if (counter === 0) {
+//         resultMessage[0].innerText =
+//             "Votre situation ne relève probablement pas du Covid-19. N’hésitez pas à contacter votre médecin en cas de doute. Vous pouvez refaire le test en cas de nouveau symptôme pour réévaluer la situation. Pour toute information concernant le Covid-19, consulter la page Conseils";
+//         resultMessage[1].innerText =
+//             "Restez chez vous au maximum en attendant que les symptômes disparaissent. Prenez votre température deux fois par jour. Rappel des mesures d’hygiène.";
+//         resultMessage[0].style.fontSize = "25px";
+//         resultMessage[0].style.fontWeight = "bold";
+//         resultMessage[0].style.color = "#026534";
+//     } else if (counter === 1) {
+//         resultMessage[0].innerText =
+//             "Nous vous conseillons de rester à votre domicile et de contacter votre médecin en cas d’apparition de nouveaux symptômes. Vous pourrez aussi utiliser à nouveau l’application pour réévaluer vos symptômes";
+//         resultMessage[1].innerText =
+//             "Restez chez vous au maximum en attendant que les symptômes disparaissent. Prenez votre température deux fois par jour. Rappel des mesures d’hygiène.";
+//         resultMessage[0].style.fontSize = "25px";
+//         resultMessage[0].style.fontWeight = "bold";
+//         resultMessage[0].style.color = "#026534";
+//     } else if (counter === 2) {
+//         resultMessage[0].innerText =
+//             "Vous pouvez faire une téléconsultation ou médecin généraliste ou visite à domicile. Appelez le 141 si une gêne respiratoire ou des difficultés importantes pour s’alimenter ou boire pendant plus de 24h apparaissent.";
+//         resultMessage[1].innerText =
+//             "Restez chez vous au maximum en attendant que les symptômes disparaissent. Prenez votre température deux fois par jour. Rappel des mesures d’hygiène.";
+//         resultMessage[0].style.fontSize = "25px";
+//         resultMessage[0].style.fontWeight = "bold";
+//         resultMessage[0].style.color = "#787878";
+//     } else {
+//         resultMessage[0].innerText = "Appelez le 141";
+//         resultMessage[1].innerText =
+//             "Restez chez vous au maximum en attendant que les symptômes disparaissent. Prenez votre température deux fois par jour. Rappel des mesures d’hygiène.";
+    
+//         resultMessage[0].style.color = "#d63031";
+//         resultMessage[0].style.fontSize = "28px";
+//         resultMessage[0].style.fontWeight = "bolder";
+//     }
+// }
 
 
 
@@ -240,18 +365,20 @@ const questions = [{
         }, {
             text: 'Non',
             icon: 'fa-times'
-        }]
-    }
+        
+    }]
+}
 }, {
     question: 'Quelle est votre température corporelle ?',
 
     input: {
         type: 'number',
         Numéro:"q2",
-
+        
         name: 'degrés',
         min: 34,
         max: 42
+        
     }
 }, {
     question: 'Ces derniers jours, avez-vous une toux ou une augmentation de votre toux habituelle ?',
