@@ -31,6 +31,7 @@ selectInputs.addEventListener('change',typeOfButton)
 
 
 
+
 //-----------------------début de test--------------:
 function Test(){
     testButton.classList.add('hide')
@@ -173,7 +174,7 @@ if (input.type === 'number') {
         if (number >= input.min && number <= input.max) {
 
             nextButton.disabled = false
-            knowQuetion[input.name]=input.value;
+            QuetionNom[input.name]=input.value;
         } 
         else {
            
@@ -186,8 +187,8 @@ else {
 
         nextButton.disabled = false
         
-        knowQuetion[input.name] = input.id;
-        console.log(knowQuetion);
+        QuetionNom[input.name] = input.id;
+        console.log(QuetionNom);
     }
 
    
@@ -237,46 +238,46 @@ function finTest(){
 
 
 
-// var counter = 0; 
+var counter = 0; 
 
 
-// function comptQuetion(){
+function comptQuetion(){
 
-//     if(QuetionNom['q1']==='oui'){
+    if(QuetionNom['q1']==='oui'){
 
-//         counter++
-//     }
+        counter++
+    }
 
-//     if(parseFloat(QuetionNom['q2'] >39) || parseFloat(QuetionNom['q2'] <35)){
+    if(parseFloat(QuetionNom['q2'] >39) || parseFloat(QuetionNom['q2'] <35)){
 
-//         counter++
-//     }
+        counter++
+    }
 
 
-//     if(QuetionNom['q3']==='oui' ){
+    if(QuetionNom['q3']==='oui' ){
 
-//         counter++
+        counter++
 
-//     }
+    }
 
-//     if(QuetionNom['q10']==='Fatigué(e)' || QuetionNom['q10']=== 'Très fatigué' ){
+    if(QuetionNom['q10']==='Fatigué(e)' || QuetionNom['q10']=== 'Très fatigué' ){
 
-//         counter++
-//     }
+        counter++
+    }
 
-//     if(parseFloat(QuetionNom['q12'] >120) || parseFloat(QuetionNom['q12'] < 40)){
+    if(parseFloat(QuetionNom['q12'] >120) || parseFloat(QuetionNom['q12'] < 40)){
 
-//         counter++
-//     }
+        counter++
+    }
 
-//     if(QuetionNom['q16']!=='Non'){
+    if(QuetionNom['q16']!=='Non'){
 
-//         counter++
-//     }
+        counter++
+    }
  
-//     showResult()
+    showResult()
    
-// }
+}
 
 
 
@@ -293,54 +294,55 @@ function finTest(){
 
 
 
-// function showResult(_counter){
+function showResult(counter){
+    alert("afficher resulta");
 
-//     saaf[1].classList.remove('actuel');
-//     saaf[2].classList.add('actuel');
-//     sectionQuestion.classList.add('hide');
-//     informationSection.classList.remove('hide');
-//     testButton.classList.remove('hide');
-//     testButton.innerText='Recommoncer le test';
-//     title.innerHTML='resultat';
-//     testButton.addEventListener('click',()=>{
+    saaf[1].classList.remove('actuel');
+    saaf[2].classList.add('actuel');
+    sectionQuestion.classList.add('hide');
+    informationSection.classList.remove('hide');
+    testButton.classList.remove('hide');
+    testButton.innerText='Recommoncer le test';
+    title.innerHTML='resultat';
+    testButton.addEventListener('click',()=>{
 
-//         window.location.reload();
-//     })
+        window.location.reload();
+    })
 
-//     if (counter === 0) {
-//         resultMessage[0].innerText =
-//             "Votre situation ne relève probablement pas du Covid-19. N’hésitez pas à contacter votre médecin en cas de doute. Vous pouvez refaire le test en cas de nouveau symptôme pour réévaluer la situation. Pour toute information concernant le Covid-19, consulter la page Conseils";
-//         resultMessage[1].innerText =
-//             "Restez chez vous au maximum en attendant que les symptômes disparaissent. Prenez votre température deux fois par jour. Rappel des mesures d’hygiène.";
-//         resultMessage[0].style.fontSize = "25px";
-//         resultMessage[0].style.fontWeight = "bold";
-//         resultMessage[0].style.color = "#026534";
-//     } else if (counter === 1) {
-//         resultMessage[0].innerText =
-//             "Nous vous conseillons de rester à votre domicile et de contacter votre médecin en cas d’apparition de nouveaux symptômes. Vous pourrez aussi utiliser à nouveau l’application pour réévaluer vos symptômes";
-//         resultMessage[1].innerText =
-//             "Restez chez vous au maximum en attendant que les symptômes disparaissent. Prenez votre température deux fois par jour. Rappel des mesures d’hygiène.";
-//         resultMessage[0].style.fontSize = "25px";
-//         resultMessage[0].style.fontWeight = "bold";
-//         resultMessage[0].style.color = "#026534";
-//     } else if (counter === 2) {
-//         resultMessage[0].innerText =
-//             "Vous pouvez faire une téléconsultation ou médecin généraliste ou visite à domicile. Appelez le 141 si une gêne respiratoire ou des difficultés importantes pour s’alimenter ou boire pendant plus de 24h apparaissent.";
-//         resultMessage[1].innerText =
-//             "Restez chez vous au maximum en attendant que les symptômes disparaissent. Prenez votre température deux fois par jour. Rappel des mesures d’hygiène.";
-//         resultMessage[0].style.fontSize = "25px";
-//         resultMessage[0].style.fontWeight = "bold";
-//         resultMessage[0].style.color = "#787878";
-//     } else {
-//         resultMessage[0].innerText = "Appelez le 141";
-//         resultMessage[1].innerText =
-//             "Restez chez vous au maximum en attendant que les symptômes disparaissent. Prenez votre température deux fois par jour. Rappel des mesures d’hygiène.";
+    if (counter === 0) {
+        resultMessage[0].innerText =
+            "Votre situation ne relève probablement pas du Covid-19. N’hésitez pas à contacter votre médecin en cas de doute. Vous pouvez refaire le test en cas de nouveau symptôme pour réévaluer la situation. Pour toute information concernant le Covid-19, consulter la page Conseils";
+        resultMessage[1].innerText =
+            "Restez chez vous au maximum en attendant que les symptômes disparaissent. Prenez votre température deux fois par jour. Rappel des mesures d’hygiène.";
+        resultMessage[0].style.fontSize = "25px";
+        resultMessage[0].style.fontWeight = "bold";
+        resultMessage[0].style.color = "#026534";
+    } else if (counter === 1) {
+        resultMessage[0].innerText =
+            "Nous vous conseillons de rester à votre domicile et de contacter votre médecin en cas d’apparition de nouveaux symptômes. Vous pourrez aussi utiliser à nouveau l’application pour réévaluer vos symptômes";
+        resultMessage[1].innerText =
+            "Restez chez vous au maximum en attendant que les symptômes disparaissent. Prenez votre température deux fois par jour. Rappel des mesures d’hygiène.";
+        resultMessage[0].style.fontSize = "25px";
+        resultMessage[0].style.fontWeight = "bold";
+        resultMessage[0].style.color = "#026534";
+    } else if (counter === 2) {
+        resultMessage[0].innerText =
+            "Vous pouvez faire une téléconsultation ou médecin généraliste ou visite à domicile. Appelez le 141 si une gêne respiratoire ou des difficultés importantes pour s’alimenter ou boire pendant plus de 24h apparaissent.";
+        resultMessage[1].innerText =
+            "Restez chez vous au maximum en attendant que les symptômes disparaissent. Prenez votre température deux fois par jour. Rappel des mesures d’hygiène.";
+        resultMessage[0].style.fontSize = "25px";
+        resultMessage[0].style.fontWeight = "bold";
+        resultMessage[0].style.color = "#787878";
+    } else {
+        resultMessage[0].innerText = "Appelez le 141";
+        resultMessage[1].innerText =
+            "Restez chez vous au maximum en attendant que les symptômes disparaissent. Prenez votre température deux fois par jour. Rappel des mesures d’hygiène.";
     
-//         resultMessage[0].style.color = "#d63031";
-//         resultMessage[0].style.fontSize = "28px";
-//         resultMessage[0].style.fontWeight = "bolder";
-//     }
-// }
+        resultMessage[0].style.color = "#d63031";
+        resultMessage[0].style.fontSize = "28px";
+        resultMessage[0].style.fontWeight = "bolder";
+    }
+}
 
 
 
