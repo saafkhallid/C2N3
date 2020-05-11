@@ -73,8 +73,8 @@ QuestionIndex=0
        
         nextButton.innerHTML='terminer le test';
         nextButton.classList.add('result');
-        const  doneTest = document.querySelector('.result');
-        doneTest.addEventListener('click',comptQuetion);
+        const  heroTest = document.querySelector('.result');
+        heroTest.addEventListener('click',comptQuetion);
        
     
     }else{
@@ -237,46 +237,46 @@ function finTest(){
 
 
 
-var counter = 0; 
+// var counter = 0; 
 
 
-function comptQuetion(){
+// function comptQuetion(){
 
-    if(QuetionNom['q1']==='oui'){
+//     if(QuetionNom['q1']==='oui'){
 
-        counter++
-    }
+//         counter++
+//     }
 
-    if(parseFloat(QuetionNom['q2'] >39) || parseFloat(QuetionNom['q2'] <35)){
+//     if(parseFloat(QuetionNom['q2'] >39) || parseFloat(QuetionNom['q2'] <35)){
 
-        counter++
-    }
+//         counter++
+//     }
 
 
-    if(QuetionNom['q3']==='oui' ){
+//     if(QuetionNom['q3']==='oui' ){
 
-        counter++
+//         counter++
 
-    }
+//     }
 
-    if(QuetionNom['q10']==='Fatigué(e)' || QuetionNom['q10']=== 'Très fatigué' ){
+//     if(QuetionNom['q10']==='Fatigué(e)' || QuetionNom['q10']=== 'Très fatigué' ){
 
-        counter++
-    }
+//         counter++
+//     }
 
-    if(parseFloat(QuetionNom['q12'] >120) || parseFloat(QuetionNom['q12'] < 40)){
+//     if(parseFloat(QuetionNom['q12'] >120) || parseFloat(QuetionNom['q12'] < 40)){
 
-        counter++
-    }
+//         counter++
+//     }
 
-    if(QuetionNom['q16']!=='Non'){
+//     if(QuetionNom['q16']!=='Non'){
 
-        counter++
-    }
+//         counter++
+//     }
  
-    showResult()
+//     showResult()
    
-}
+// }
 
 
 
